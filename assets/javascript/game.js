@@ -1,1 +1,54 @@
-{\rtf1}
+
+
+    //global varibales
+        var wins = 0;
+        var losses = 0;
+        var guessesLeft = 10;
+        var guessedLetters = [];
+        var computerChoices = ["a", "b", "c","d", "e", "f","g", "h", "i","j", "k", "l","m", "n", "o","p", "q", "r","s", "t", "u","v", "w", "x", "y", "z"];
+      
+        document.onkeyup = function(event) {
+            //get the usersGuess
+            var userGuess = event.key;
+
+            //get computers guess
+            var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+            if(userGuess === computerGuess)
+            {
+                wins++;
+                guessesLeft = 10;
+                guessedLetters = [];
+            }
+            else{
+                if(guessesLeft === 0){
+                    losses++;
+                    guessesLeft = 10;
+                    guessedLetters = [];
+                }
+                else{
+                guessesLeft--;
+                guessedLetters.push(userGuess);
+                 }
+
+            }
+
+
+            var html =
+            "<p>Wins: " + wins + "</p>" +
+            "<p>Losses " + losses + "</p>" +
+            "<p>Guesses Left: " + guessesLeft + "</p>" +
+            "<p>Your Guesses so far: " + guessedLetters + "</p>";
+       
+        document.querySelector("#game").innerHTML = html;
+
+
+
+
+
+        };
+            
+        
+    
+    
+    
+ 
